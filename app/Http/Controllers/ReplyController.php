@@ -26,7 +26,7 @@ class ReplyController extends Controller
 
         if(Auth::user()->id == $reply->user->id){
             $reply->delete();
-            return redirect()->route('home')->with('success', "Twat deleted!");
+            return redirect()->route('home')->with('success', "Reply deleted!");
         }else{
             return redirect()->route('home');
         }
