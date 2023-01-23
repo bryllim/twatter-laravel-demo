@@ -32,3 +32,4 @@ Route::get('/deletetwat/{id}', [TwatController::class, 'delete'])->name('deletet
 // Reply routes
 
 Route::post('/createreply', [ReplyController::class, 'create'])->name('createreply');
+Route::get('/deletereply/{id}', [ReplyController::class, 'delete'])->name('deletereply');

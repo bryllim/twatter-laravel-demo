@@ -82,11 +82,19 @@
                             @foreach($twat->replies as $reply)
                             <div class="card bg-light pt-2 px-2 mb-2">
                                 <small>
-                                    <p>
+                                    <div class="d-flex justify-content-between">
                                         <a href="{{ route('profile', $reply->user->id) }}" style="text-decoration:none">{{ $reply->user->name }}</a>
-                                        <span class="float-end text-muted"><small>⏲ {{ $reply->created_at->diffForHumans() }}</small></span>
-                                        <br>{{ $reply->content }}
-                                    </p>
+                                        <div>
+                                            <span class="text-muted"><small>⏲ {{ $reply->created_at->diffForHumans() }}</small></span>
+                                            @if($reply->user->id == Auth::user()->id)
+                                            <a href="#" class="dropdown-toggle" style="text-decoration:none" data-bs-toggle="dropdown"></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="{{ route('deletereply', $reply->id) }}">Delete</a></li>
+                                            </ul>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    {{ $reply->content }}
                                 </small>
                             </div>
                             @endforeach
