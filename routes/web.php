@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TwatController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,10 @@ Route::get('/profile/{id}', [HomeController::class, 'profile'])->name('profile')
 Route::post('/createtwat', [TwatController::class, 'create'])->name('createtwat');
 Route::get('/deletetwat/{id}', [TwatController::class, 'delete'])->name('deletetwat');
 
-// Reply routes
+// Reaction routes
+Route::post('/reaction', [ReactionController::class, 'create'])->name('reaction.create');
+Route::get('/reaction/{id}', [ReactionController::class, 'delete'])->name('reaction.delete');
 
+// Reply routes
 Route::post('/createreply', [ReplyController::class, 'create'])->name('createreply');
 Route::get('/deletereply/{id}', [ReplyController::class, 'delete'])->name('deletereply');

@@ -68,11 +68,43 @@
                                 {{ $twat->content }}
                             </p>
                             <!-- Reactions -->
-                            <button class="btn-light btn btn-sm rounded-pill">👍🏻</button>
-                            <button class="btn-light btn btn-sm rounded-pill">💙</button>
-                            <button class="btn-light btn btn-sm rounded-pill">😂</button>
-                            <button class="btn-light btn btn-sm rounded-pill">😠</button>
-                            <button class="btn-light btn btn-sm rounded-pill">👎🏻</button>
+                            <div class="d-flex">
+                                <form action="{{ route('reaction.create') }}" method="POST" class="mt-2">
+                                    @csrf
+                                    <input type="hidden" name="reaction" value="like">
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                    <input type="hidden" name="twat_id" value="{{ $twat->id }}">
+                                    <button type="submit" class="btn-light btn btn-sm rounded-pill">👍🏻</button>
+                                </form>
+                                <form action="{{ route('reaction.create') }}" method="POST" class="mt-2">
+                                    @csrf
+                                    <input type="hidden" name="reaction" value="heart">
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                    <input type="hidden" name="twat_id" value="{{ $twat->id }}">
+                                    <button type="submit" class="btn-light btn btn-sm rounded-pill">💙</button>
+                                </form>
+                                <form action="{{ route('reaction.create') }}" method="POST" class="mt-2">
+                                    @csrf
+                                    <input type="hidden" name="reaction" value="laugh">
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                    <input type="hidden" name="twat_id" value="{{ $twat->id }}">
+                                    <button type="submit" class="btn-light btn btn-sm rounded-pill">😂</button>
+                                </form>
+                                <form action="{{ route('reaction.create') }}" method="POST" class="mt-2">
+                                    @csrf
+                                    <input type="hidden" name="reaction" value="angry">
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                    <input type="hidden" name="twat_id" value="{{ $twat->id }}">
+                                    <button type="submit" class="btn-light btn btn-sm rounded-pill">😠</button>
+                                </form>
+                                <form action="{{ route('reaction.create') }}" method="POST" class="mt-2">
+                                    @csrf
+                                    <input type="hidden" name="reaction" value="dislike">
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                    <input type="hidden" name="twat_id" value="{{ $twat->id }}">
+                                    <button type="submit" class="btn-light btn btn-sm rounded-pill">👎🏻</button>
+                                </form>
+                            </div>
                             <p>
                                 <small><small><span class="badge bg-light text-dark">2 👍🏻</span></small></small>
                                 <small><small><span class="badge bg-light text-dark">4 💙</span></small></small>
