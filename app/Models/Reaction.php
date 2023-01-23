@@ -5,23 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Twat extends Model
+class Reaction extends Model
 {
     use HasFactory;
 
-    protected $table = 'twats';
+    protected $table = "reactions";
 
     protected $fillable = [
-        'content',
+        'reaction',
         'user_id',
+        'twat_id',
     ];
 
-    public function reactions(){
-        return $this->hasMany(Reaction::class);
-    }
-
-    public function replies(){
-        return $this->hasMany(Reply::class);
+    public function twat(){
+        return $this->belongsTo(Twat::class);
     }
 
     public function user(){
