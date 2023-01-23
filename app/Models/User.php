@@ -45,4 +45,12 @@ class User extends Authenticatable
     public function twats(){
         return $this->hasMany(Twat::class);
     }
+
+    public function hasReaction(int $twatId) {
+        $reaction = Reaction::where(['user_id' => $this->id, 'twat_id' => $twatId])->first();
+        if ($reaction == null) {
+            return false;
+        }
+        return true;
+    }
 }
