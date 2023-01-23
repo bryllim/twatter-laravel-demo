@@ -20,6 +20,10 @@ class Twat extends Model
         return $this->hasMany(Reaction::class);
     }
 
+    public function countReaction(string $type) {
+        return Reaction::where(['reaction' => $type, 'twat_id' => $this->id])->count();
+    }
+
     public function replies(){
         return $this->hasMany(Reply::class);
     }

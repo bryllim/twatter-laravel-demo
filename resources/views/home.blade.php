@@ -106,8 +106,30 @@
                                 </form>
                             </div>
                             <p>
-                                <small><small><span class="badge bg-light text-dark">2 👍🏻</span></small></small>
-                                <small><small><span class="badge bg-light text-dark">4 💙</span></small></small>
+                                {{-- Total like --}}
+                                @if($twat->countReaction('like'))
+                                <small><small><span class="badge bg-light text-dark">{{$twat->countReaction('like')}} 👍🏻</span></small></small>
+                                @endif
+
+                                {{-- Total heart --}}
+                                @if($twat->countReaction('heart'))
+                                <small><small><span class="badge bg-light text-dark">{{$twat->countReaction('heart')}} 💙</span></small></small>
+                                @endif
+
+                                {{-- Total laugh --}}
+                                @if($twat->countReaction('laugh'))
+                                <small><small><span class="badge bg-light text-dark">{{$twat->countReaction('laugh')}} 😂</span></small></small>
+                                @endif
+
+                                {{-- Total angry --}}
+                                @if($twat->countReaction('angry'))
+                                <small><small><span class="badge bg-light text-dark">{{$twat->countReaction('angry')}} 😠</span></small></small>
+                                @endif
+
+                                {{-- Total dislike --}}
+                                @if($twat->countReaction('dislike'))
+                                <small><small><span class="badge bg-light text-dark">{{$twat->countReaction('dislike')}} 👎🏻</span></small></small>
+                                @endif
                             </p>
                             <hr>
                             <!-- Replies -->
