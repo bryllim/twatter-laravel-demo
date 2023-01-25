@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    
+.tableoverflow-y{
+  position: relative;
+  height: calc(100vh - 600px);
+  top: 10px;
+  margin: 0 20px 30px 0; 
+  overflow-y: scroll;
+}
+
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <!-- Profile Section -->
@@ -23,12 +34,12 @@
             </div>
         </div>
         <div class="col-md-9">
-            <div class="card p-5">
+            <div class="card p-3">
                 <h1 class="fw-bold">Admin Dashboard</h1>
                 <div class="row mt-4">
                     <!-- Total users -->
-                    <div class="col-md-6">
-                        <div class="card p-3">
+                    <div class="col">
+                        <div class="card p-2">
                             <p>Total Users</p>
                             <h2 class="fw-bold">
                                 {{ count($users) }}
@@ -36,8 +47,8 @@
                         </div>
                     </div>
                     <!-- Total Twats -->
-                    <div class="col-md-3">
-                        <div class="card p-3">
+                    <div class="col">
+                        <div class="card p-2">
                             <p>Total Twats</p>
                             <h2 class="fw-bold">
                                 {{ $totaltwats }}
@@ -45,46 +56,50 @@
                         </div>
                     </div>
                     <!-- Total Twats -->
-                    <div class="col-md-3">
-                        <div class="card p-3">
+                    <div class="col">
+                        <div class="card p-2">
                             <p>Total Replies</p>
                             <h2 class="fw-bold">
                                 {{ $totalreplies }}
                             </h2>
                         </div>
                     </div>
-                    <hr class="my-5">
+                    <hr class="my-3">
                     <h1 class="fw-bold">User Management</h1>
                     @if(session('success'))
                     <div class="alert alert-primary" role="alert">
                         {{session('success')}}
                     </div>
                     @endif
-                    <table class="table mt-3 border" id="usermanagement">
-                        <thead>
+                    <div class="tableoverflow-y">
+                        <table class="table mt-3 border" id="usermanagement">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            @foreach($users as $user)
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Actions</th>
+                                <td>{{ $user->id }} </td>
+                                <td>{{ $user->name }}
+                                    @if($user->type == 'admin')
+                                    <span class="badge rounded-pill text-bg-warning">Admin</span>
+                                    @endif
+                                </td>
+                                <td>{{ $user->email }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-dark" onclick="showUser({{ $user->id }});">✎</button>
+                                    <a href="{{ route('deleteuser', $user->id) }}" class="btn btn-sm btn-light">🗑️</a>
+                                </td>
                             </tr>
-                        </thead>
-                        @foreach($users as $user)
-                        <tr>
-                            <td>{{ $user->id }} </td>
-                            <td>{{ $user->name }}
-                                @if($user->type == 'admin')
-                                <span class="badge rounded-pill text-bg-warning">Admin</span>
-                                @endif
-                            </td>
-                            <td>{{ $user->email }}</td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-dark" onclick="showUser({{ $user->id }});">✎</button>
-                                <a href="{{ route('deleteuser', $user->id) }}" class="btn btn-sm btn-light">🗑️</a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </table>
+                            @endforeach
+                        </table>
+                    </div>
+
+                    
                 </div>
             </div>
         </div>
