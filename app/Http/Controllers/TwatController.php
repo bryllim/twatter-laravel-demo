@@ -28,7 +28,7 @@ class TwatController extends Controller
 
             $twat->image_path = $name;
         }else{
-            return redirect()->route('home')->with('success', "Image upload error.");
+            $twat->image_path = null;
         }
 
         $twat->save();
