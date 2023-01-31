@@ -8,7 +8,8 @@ use App\Http\Controllers\ReactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Mailgun\Mailgun;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,3 +97,20 @@ Route::get('/generate-pdf', function(){
     return $pdf->stream('userlist.pdf');
 
 })->name('generate-pdf');
+
+Route::get('/sendemail', function(){
+
+    $subject = "This is a subject";
+    $text = "lorem ipsum";
+
+    // API Key
+    $mg = Mailgun::create(config('MAIL_APIKEY'));
+    // Domain Name
+    $mg->messages()->send(config('MAIL_DOMAIN'), [
+        'from'    => 'postmaster@sandboxa34cd7f4af3b484d92f163a835fdc4c1.mailgun.org',
+        'to'      => 'b.lim@pocketdevs.ph',
+        'subject' => $subject,
+        'text'    => $text
+      ]);
+    
+});

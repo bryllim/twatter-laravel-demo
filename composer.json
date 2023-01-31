@@ -11,7 +11,10 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^4.2"
+        "laravel/ui": "^4.2",
+        "mailgun/mailgun-php": "^3.5",
+        "nyholm/psr7": "^1.5",
+        "symfony/http-client": "^6.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
