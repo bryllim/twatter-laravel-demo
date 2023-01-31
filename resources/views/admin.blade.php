@@ -3,15 +3,13 @@
 @section('title', 'Admin')
 @section('content')
 <style>
-    
-.tableoverflow-y{
-  position: relative;
-  height: calc(100vh - 600px);
-  top: 10px;
-  margin: 0 20px 30px 0; 
-  overflow-y: scroll;
+.tableoverflow-y {
+    position: relative;
+    height: calc(100vh - 600px);
+    top: 10px;
+    margin: 0 20px 30px 0;
+    overflow-y: scroll;
 }
-
 </style>
 <div class="container">
     <div class="row justify-content-center">
@@ -66,7 +64,9 @@
                         </div>
                     </div>
                     <hr class="my-3">
-                    <h1 class="fw-bold">User Management</h1>
+                    <h1 class="fw-bold">User Management
+                        <a href="{{ route('generate-pdf') }}" target="_blank" class="btn btn-light btn-sm float-end">⬇ Download PDF</a>
+                    </h1>
                     @if(session('success'))
                     <div class="alert alert-primary" role="alert">
                         {{session('success')}}
@@ -92,7 +92,8 @@
                                 </td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-dark" onclick="showUser({{ $user->id }});">✎</button>
+                                    <button type="button" class="btn btn-sm btn-dark"
+                                        onclick="showUser({{ $user->id }});">✎</button>
                                     <a href="{{ route('deleteuser', $user->id) }}" class="btn btn-sm btn-light">🗑️</a>
                                 </td>
                             </tr>
@@ -100,7 +101,7 @@
                         </table>
                     </div>
 
-                    
+
                 </div>
             </div>
         </div>
@@ -119,11 +120,13 @@
                     @csrf
                     <div class="mb-3">
                         <label for="edituser_email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="edituser_email" name="email" aria-describedby="emailHelp">
+                        <input type="email" class="form-control" id="edituser_email" name="email"
+                            aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="edituser_name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="edituser_name" name="name" aria-describedby="emailHelp">
+                        <input type="text" class="form-control" id="edituser_name" name="name"
+                            aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="edituser_password" class="form-label">New password</label>

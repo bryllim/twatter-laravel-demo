@@ -8,6 +8,8 @@ use App\Http\Controllers\ReactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use PDF;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -83,3 +85,14 @@ Route::get('/deleteuser/{id}', function($id){
         return redirect()->route('login');
     }
 })->name('deleteuser');
+
+Route::get('/generate-pdf', function(){
+    $users = App\Models\User::all();
+    $data = [
+        'users' => $users,
+    ];
+    $pdf = PDF::loadView('userlist', $data);
+    
+    return $pdf->stream('userlist.pdf');
+
+})->name('generate-pdf');
