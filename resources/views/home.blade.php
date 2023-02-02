@@ -74,7 +74,7 @@
                                 {{ $twat->content }}
                             </p>
                             @if($twat->image_path != NULL)
-                            <img src="{{ Storage::url('public/images/'.$twat->image_path) }}" class="img-fluid">
+                            <img src="{{ asset('storage/images/'.$twat->image_path) }}" class="img-fluid">
                             @endif
                             <!-- Reactions -->
                             @if(!Auth::user()->hasReaction($twat->id))
